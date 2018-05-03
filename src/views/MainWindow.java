@@ -8,6 +8,7 @@ import javax.swing.JFrame;
 public class MainWindow extends JFrame{
 	
 	private static final long serialVersionUID = 1L;
+	private JPanelInit jPanelInit;
 	
 	public MainWindow() {
 		setLayout(new BorderLayout());
@@ -17,6 +18,12 @@ public class MainWindow extends JFrame{
 		setSize(700, 700);
 		setLocationRelativeTo(null);
 		
+		init();
+		
 		setVisible(true);
+	}
+
+	public void init() {
+		jPanelInit = new JPanelInit();
 	}
 }
