@@ -10,7 +10,8 @@ import javax.swing.JPanel;
 import models.Player;
 
 public class JPanelInit extends JPanel{
-
+	
+	private static final Image PLAYER = new ImageIcon("src/images/personLeft.gif").getImage();
 	private static final long serialVersionUID = 1L;
 	private Player player;
 	
@@ -21,7 +22,7 @@ public class JPanelInit extends JPanel{
 	@Override
 	public void paint(Graphics g) {
 		super.paint(g);
-		g.drawOval(player.getX(), player.getY(), 50, 50);
+		g.drawImage(PLAYER, player.getX(), player.getY(), 100, 100, this);
 	}
 	
 	public void setCoordinates(Player player) {
