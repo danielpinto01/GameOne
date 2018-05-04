@@ -10,7 +10,7 @@ public class Manager extends MyThread{
 		start();
 	}
 	
-	public void moveHero(int code){
+	public void movePlayer(int code){
 		switch (code) {
 		case 37:
 			player.move(DirectionPlayer.LEFT);

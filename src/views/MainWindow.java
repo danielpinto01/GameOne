@@ -6,6 +6,7 @@ import java.awt.Color;
 import javax.swing.JFrame;
 
 import controllers.Controller;
+import models.Player;
 
 public class MainWindow extends JFrame{
 	
@@ -23,12 +24,17 @@ public class MainWindow extends JFrame{
 		addKeyListener(controller);
 		
 		init();
-		
+		setFocusable(true);
 		setVisible(true);
 	}
 
 	public void init() {
 		jPanelInit = new JPanelInit();
 		add(jPanelInit);
+	}
+	
+	public void setGame(Player player) {
+		jPanelInit.setCoordinates(player);
+		jPanelInit.repaint();
 	}
 }
