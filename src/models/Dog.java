@@ -6,8 +6,7 @@ public class Dog {
 	private int y;
 
 	public Dog() {
-		this.x = x;
-		this.y = y;
+		
 	}
 
 	public void moveDog(int posX, int posY) {
