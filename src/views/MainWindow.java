@@ -5,18 +5,22 @@ import java.awt.Color;
 
 import javax.swing.JFrame;
 
+import controllers.Controller;
+
 public class MainWindow extends JFrame{
 	
 	private static final long serialVersionUID = 1L;
 	private JPanelInit jPanelInit;
 	
-	public MainWindow() {
+	public MainWindow(Controller controller) {
 		setLayout(new BorderLayout());
 		setBackground(Color.BLUE);
 		setTitle("Game v1.0");
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setSize(700, 700);
 		setLocationRelativeTo(null);
+		
+		addKeyListener(controller);
 		
 		init();
 		
@@ -25,5 +29,6 @@ public class MainWindow extends JFrame{
 
 	public void init() {
 		jPanelInit = new JPanelInit();
+		add(jPanelInit);
 	}
 }
