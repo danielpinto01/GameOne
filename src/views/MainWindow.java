@@ -24,7 +24,6 @@ public class MainWindow extends JFrame{
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setSize(700, 700);
 		setLocationRelativeTo(null);
-		
 		addKeyListener(controller);
 		
 		init();

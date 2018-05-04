@@ -6,7 +6,6 @@ public class Dog {
 	private int y;
 
 	public Dog() {
-		
 	}
 
 	public void moveDog(int posX, int posY) {

@@ -34,7 +34,6 @@ public class JPanelInit extends JPanel{
 			g.drawImage(DOG, dog.getX(), dog.getY(), 80, 80, this);
 			g.drawString("Time:" + String.valueOf(time), 30, 30);
 		}
-		
 	}
 	
 	public void setTime(int time) {

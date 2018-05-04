@@ -71,5 +71,4 @@ public class Manager extends MyThread{
 	void executeTask() {
 		moveDog();
 	}
-
 }
