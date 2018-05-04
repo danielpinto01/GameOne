@@ -7,12 +7,14 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 
 import controllers.Controller;
+import models.Dog;
 import models.Player;
 
 public class MainWindow extends JFrame{
 	
 	private static final long serialVersionUID = 1L;
 	private JPanelInit jPanelInit;
+	
 	
 	public MainWindow(Controller controller) {
 		setLayout(new BorderLayout());
@@ -29,14 +31,26 @@ public class MainWindow extends JFrame{
 		setFocusable(true);
 		setVisible(true);
 	}
+	
+	public void setTime(int time) {
+		jPanelInit.setTime(time);
+	}
 
 	public void init() {
 		jPanelInit = new JPanelInit();
 		add(jPanelInit);
 	}
 	
-	public void setGame(Player player) {
-		jPanelInit.setCoordinates(player);
+	public void setGame(Player player, Dog dog) {
+		jPanelInit.setCoordinates(player, dog);
 		jPanelInit.repaint();
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
+	public JPanelInit getjPanelInit() {
+		return jPanelInit;
 	}
 }
