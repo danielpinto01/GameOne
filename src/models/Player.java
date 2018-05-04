@@ -48,10 +48,7 @@ public class Player extends MyThread{
 	}
 
 	public boolean check(int x, int y) {
-		return ((this.x > x && this.x < (x + 80))
-				|| (this.x + 80 > x && this.x + 80 < (x + 80)))
-				&& ((this.y > y && this.y < (y + 80))
-						|| (this.y +80 > y && this.y + 80 < (y + 80)));
+		return ((this.x > x && this.x < (x + 80)) || (this.x + 80 > x && this.x + 80 < (x + 80))) && ((this.y > y && this.y < (y + 80)) || (this.y +80 > y && this.y + 80 < (y + 80)));
 	}
 
 	public int getX() {

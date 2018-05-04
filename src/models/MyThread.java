@@ -20,7 +20,6 @@ public abstract class MyThread implements Runnable{
 		pause = false;
 		stop = true;
 		notify();
-		
 	}
 	
 	public synchronized void pause(){
