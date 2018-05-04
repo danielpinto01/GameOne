@@ -64,8 +64,8 @@ public class Controller implements KeyListener{
 
 	@Override
 	public void keyReleased(KeyEvent e) {
-		System.out.println(KeyEvent.getKeyText(e.getKeyCode()));
-		System.out.println(mainWindow.getWidth() + "-" + mainWindow.getHeight());
+//		System.out.println(KeyEvent.getKeyText(e.getKeyCode()));
+//		System.out.println(mainWindow.getWidth() + "-" + mainWindow.getHeight());
 		manager.movePlayer(e.getKeyCode(), mainWindow.getjPanelInit().getWidth(), mainWindow.getjPanelInit().getHeight());
 	}
 

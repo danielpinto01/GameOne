@@ -18,7 +18,7 @@ public class Player extends MyThread{
 	}
 
 	public void move(DirectionPlayer directionPlayer, int posXFrame, int posYFrame){
-		System.out.println(x + "-" + y);
+//		System.out.println(x + "-" + y);
 		if (!statusPlayer) {
 			switch (directionPlayer) {
 			case DOWN:
