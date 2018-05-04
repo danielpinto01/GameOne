@@ -12,6 +12,7 @@ import models.Player;
 public class JPanelInit extends JPanel{
 	
 	private static final Image PLAYER = new ImageIcon("src/images/personLeft.gif").getImage();
+	private static final Image DOG = new ImageIcon("src/images/dog.gif").getImage();
 	private static final long serialVersionUID = 1L;
 	private Player player;
 	
@@ -23,6 +24,7 @@ public class JPanelInit extends JPanel{
 	public void paint(Graphics g) {
 		super.paint(g);
 		g.drawImage(PLAYER, player.getX(), player.getY(), 100, 100, this);
+		g.drawImage(DOG, 500, 500, 100, 100, this);
 	}
 	
 	public void setCoordinates(Player player) {
