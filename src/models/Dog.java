@@ -36,7 +36,6 @@ public class Dog extends MyThread{
 		return y;
 	}
 	
-
 	public void setX(int x) {
 		this.x = x;
 	}
@@ -60,7 +59,6 @@ public class Dog extends MyThread{
 	public void setDogType(DogType dogType) {
 		this.dogType = dogType;
 	}
-
 
 	@Override
 	void executeTask() {
