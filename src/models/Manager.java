@@ -25,7 +25,7 @@ public class Manager extends MyThread{
 	}
 
 	private void addEnemy() {
-		timer = new Timer(3000, new ActionListener() {
+		timer = new Timer(2000, new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				dogs.add(new Dog("Pincher", DogType.PINCHER));
@@ -115,6 +115,8 @@ public class Manager extends MyThread{
 					player.setLife(player.getLife() -10 );
 					dogs.remove(dog);
 					System.out.println("BAN");
+				}else {	
+					player.setLife(0);
 				}
 			}
 		}
@@ -129,7 +131,7 @@ public class Manager extends MyThread{
 			if (dog.getDogType().equals(DogType.PINCHER)) {
 				if (checkCollisionShoot(dog.getX(),dog.getY(), x, y)) {
 					dogs.remove(dog);
-					timerTwo.stop();
+					timer.stop();
 					System.out.println("eLIMINADO");
 				}
 			}

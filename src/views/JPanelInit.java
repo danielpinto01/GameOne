@@ -20,6 +20,7 @@ public class JPanelInit extends JPanel{
 
 	private static final Image PLAYER = new ImageIcon("src/images/personLeft.gif").getImage();
 	private static final Image DOG = new ImageIcon("src/images/dog.gif").getImage();
+	private static final Image DOG_MASTER = new ImageIcon("src/images/dogMasterTwo.gif").getImage();
 	private static final long serialVersionUID = 1L;
 	private Player player;
 	private int time;
@@ -49,7 +50,7 @@ public class JPanelInit extends JPanel{
 				if (dog.getDogType().equals(DogType.PINCHER)) {
 					g.drawImage(DOG, dog.getX(), dog.getY(), 80, 80, this);
 				}else {
-					g.drawImage(PLAYER, dog.getX(), dog.getY(), 80, 80, this);
+					g.drawImage(DOG_MASTER, dog.getX(), dog.getY(), 80, 60, this);
 					
 				}
 			}
