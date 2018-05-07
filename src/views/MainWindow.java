@@ -30,7 +30,6 @@ public class MainWindow extends JFrame{
 		setSize(700, 700);
 		setLocationRelativeTo(null);
 		addKeyListener(controller);
-		
 		init(controller);
 		setFocusable(true);
 		setVisible(true);

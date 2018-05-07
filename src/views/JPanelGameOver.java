@@ -10,6 +10,5 @@ public class JPanelGameOver extends JPanel{
 	
 	public JPanelGameOver() {
 		setBackground(Color.DARK_GRAY);
-		
 	}
 }

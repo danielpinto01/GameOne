@@ -48,9 +48,7 @@ public class JPanelInit extends JPanel{
 				g.drawImage(DOG, dog.getX(), dog.getY(), 80, 80, this);
 			}
 		}
-		
 		g.drawString("Life: " + player.getLife(), 400, 30);
-		
 		if (player.getLife() < 30) {
 			g.setColor(Color.RED);
 		}else if (player.getLife() >= 30 && player.getLife() < 70) {
