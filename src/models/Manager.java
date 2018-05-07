@@ -12,8 +12,10 @@ public class Manager extends MyThread{
 	private Player player;
 	private ArrayList<Dog> dogs;
 	private int time;
+	
 	private Timer timer;
 
+	
 	public Manager(String name) {
 		super(name);
 		player = new Player();
@@ -32,6 +34,7 @@ public class Manager extends MyThread{
 		timer.start();	
 	}
 
+	
 	public ArrayList<Dog> getDogs() {
 		return dogs;
 	}
@@ -44,6 +47,7 @@ public class Manager extends MyThread{
 		time++;
 	}
 
+	
 	public void movePlayer(int code, int posXFrame, int posYFrame){
 		switch (code) {
 		case 37:
@@ -60,11 +64,11 @@ public class Manager extends MyThread{
 			break;
 		}
 	}
+	
 
 	@Override
 	void executeTask() {
 		try {
-			//		moveDog();
 			checkCollisionDog();
 			gameOver();
 		} catch (Exception e) {
