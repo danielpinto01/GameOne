@@ -4,6 +4,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 import javax.swing.JOptionPane;
 import javax.swing.SwingWorker;
@@ -12,31 +14,26 @@ import javax.swing.Timer;
 import models.Manager;
 import views.MainWindow;
 
-public class Controller implements KeyListener{
+public class Controller implements KeyListener, MouseListener{
 
 	private MainWindow mainWindow;
 	private Manager manager;
 	private boolean finalGame = true;
-	
+	private Timer timer;
+
 	public Controller() {
 		mainWindow = new MainWindow(this);
 		manager = new Manager("player");
 		start();
 		countTime();
 	}
-	
+
 	private void start() {
 		SwingWorker<Void, Void> refreshBoard = new SwingWorker<Void, Void>() {
 			@Override
 			protected Void doInBackground() throws Exception {
 				while (finalGame) {
-					mainWindow.setGame(manager.getPlayer(), manager.getDog());
-					if (manager.check()) {
-						JOptionPane.showMessageDialog(null,"GAME OVER", "Game v1.0", JOptionPane.CLOSED_OPTION);
-						finalGame = false;
-						manager.pauseGame();
-						manager.stop();
-					}
+					mainWindow.setGame(manager.getPlayer(), manager.getDogs());
 					Thread.sleep(100);
 				}
 				return null;
@@ -44,9 +41,9 @@ public class Controller implements KeyListener{
 		};
 		refreshBoard.execute();
 	}
-	
+
 	public void countTime() {
-		Timer timer = new Timer(1000, new ActionListener() {
+		timer = new Timer(1000, new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if (!manager.getPlayer().isStatusPlayer()) {
@@ -59,17 +56,42 @@ public class Controller implements KeyListener{
 	}
 
 	@Override
-	public void keyPressed(KeyEvent arg0) {
-	}
-
-	@Override
-	public void keyReleased(KeyEvent e) {
-//		System.out.println(KeyEvent.getKeyText(e.getKeyCode()));
-//		System.out.println(mainWindow.getWidth() + "-" + mainWindow.getHeight());
+	public void keyPressed(KeyEvent e) {
 		manager.movePlayer(e.getKeyCode(), mainWindow.getjPanelInit().getWidth(), mainWindow.getjPanelInit().getHeight());
 	}
 
 	@Override
-	public void keyTyped(KeyEvent arg0) {
+	public void keyReleased(KeyEvent e) {
+	}
+
+	@Override
+	public void keyTyped(KeyEvent e) {
+	}
+
+	@Override
+	public void mouseClicked(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+	}
+
+	@Override
+	public void mouseExited(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+	}
+
+	@Override
+	public void mousePressed(MouseEvent e) {
+		try {
+			manager.checkShoot(e.getX(), e.getY());
+		} catch (Exception e2) {}
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent arg0) {
+		// TODO Auto-generated method stub
 	}
 }

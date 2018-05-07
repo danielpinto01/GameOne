@@ -9,16 +9,17 @@ public class Player extends MyThread{
 	private int x;
 	private int y;
 	private boolean statusPlayer;
+	private int life;
 
 	public Player() {
 		super("player");
 		x = new Random().nextInt(500);
 		y = new Random().nextInt(500);
+		life = 100;
 		start();
 	}
 
 	public void move(DirectionPlayer directionPlayer, int posXFrame, int posYFrame){
-//		System.out.println(x + "-" + y);
 		if (!statusPlayer) {
 			switch (directionPlayer) {
 			case DOWN:
@@ -47,10 +48,6 @@ public class Player extends MyThread{
 		}
 	}
 
-	public boolean check(int x, int y) {
-		return ((this.x > x && this.x < (x + 80)) || (this.x + 80 > x && this.x + 80 < (x + 80))) && ((this.y > y && this.y < (y + 80)) || (this.y +80 > y && this.y + 80 < (y + 80)));
-	}
-
 	public int getX() {
 		return x;
 	}
@@ -65,6 +62,14 @@ public class Player extends MyThread{
 
 	public void setStatusPlayer(boolean statusPlayer) {
 		this.statusPlayer = statusPlayer;
+	}
+	
+	public int getLife() {
+		return life;
+	}
+
+	public void setLife(int life) {
+		this.life = life;
 	}
 
 	@Override

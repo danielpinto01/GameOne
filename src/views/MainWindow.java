@@ -2,6 +2,11 @@ package views;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Cursor;
+import java.awt.Image;
+import java.awt.Point;
+import java.awt.Toolkit;
+import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -14,7 +19,7 @@ public class MainWindow extends JFrame{
 	
 	private static final long serialVersionUID = 1L;
 	private JPanelInit jPanelInit;
-	
+	private JPanelGameOver jPanelGameOver;
 	
 	public MainWindow(Controller controller) {
 		setLayout(new BorderLayout());
@@ -26,7 +31,7 @@ public class MainWindow extends JFrame{
 		setLocationRelativeTo(null);
 		addKeyListener(controller);
 		
-		init();
+		init(controller);
 		setFocusable(true);
 		setVisible(true);
 	}
@@ -35,21 +40,25 @@ public class MainWindow extends JFrame{
 		jPanelInit.setTime(time);
 	}
 
-	public void init() {
-		jPanelInit = new JPanelInit();
+	public void init(Controller controller) {
+		jPanelInit = new JPanelInit(controller);
 		add(jPanelInit);
 	}
 	
-	public void setGame(Player player, Dog dog) {
-		jPanelInit.setCoordinates(player, dog);
+	public void setGame(Player player, ArrayList<Dog> dogs) {
+		jPanelInit.setCoordinates(player, dogs);
 		jPanelInit.repaint();
-	}
-
-	public static long getSerialversionuid() {
-		return serialVersionUID;
 	}
 
 	public JPanelInit getjPanelInit() {
 		return jPanelInit;
+	}
+	
+	public void gameOver() {
+		remove(jPanelInit);
+		jPanelGameOver = new JPanelGameOver();
+		add(jPanelGameOver, BorderLayout.CENTER);
+		revalidate();
+		repaint();
 	}
 }

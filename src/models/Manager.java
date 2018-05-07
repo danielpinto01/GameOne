@@ -1,18 +1,41 @@
 package models;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
+
+import javax.swing.JOptionPane;
+import javax.swing.Timer;
+
 public class Manager extends MyThread{
-	
+
 	private Player player;
-	private Dog dog;
+	private ArrayList<Dog> dogs;
 	private int time;
+	private Timer timer;
 
 	public Manager(String name) {
 		super(name);
 		player = new Player();
-		dog = new Dog();
+		dogs = new ArrayList<>();	
+		addEnemy();
 		start();
 	}
-	
+
+	private void addEnemy() {
+		timer = new Timer(1000, new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				dogs.add(new Dog("Pincher", DogType.PINCHER));
+			}
+		});
+		timer.start();	
+	}
+
+	public ArrayList<Dog> getDogs() {
+		return dogs;
+	}
+
 	public int getTime() {
 		return time;
 	}
@@ -37,16 +60,74 @@ public class Manager extends MyThread{
 			break;
 		}
 	}
-	
+
+	@Override
+	void executeTask() {
+		try {
+			//		moveDog();
+			checkCollisionDog();
+			gameOver();
+		} catch (Exception e) {
+		}
+	}
+
 	public void pauseGame() {
 		player.setStatusPlayer(true);
 	}
-	
+
 	public void moveDog() {
-		dog.moveDog(player.getX(), player.getY());
+		for (Dog dog : dogs) {
+			dog.moveDog(player.getX(), player.getY());
+			if (check(dog.getX(), dog.getY())) {
+				dogs.remove(dog);
+				System.out.println("Hey");
+			}
+		}
 	}
-	
-	
+
+	public void gameOver() {
+		if (player.getLife() <= 0) {
+			JOptionPane.showMessageDialog(null,"GAME OVER", "Game v1.0", JOptionPane.CLOSED_OPTION);
+			stopGame();
+			timer.stop();
+			player.stop();
+		}
+	}
+
+	private void checkCollisionDog() {
+		for (Dog dog : dogs) {
+			dog.moveDog(player.getX(), player.getY());
+			if (check(dog.getX(), dog.getY())) {
+				if (dog.getDogType().equals(DogType.PINCHER)) {
+					player.setLife(player.getLife() -10 );
+					dogs.remove(dog);
+					System.out.println("BAN");
+				}
+			}
+		}
+	}
+
+	public boolean checkCollisionShoot(int ex, int ey, int x, int y){
+		return ((ex > x && ex < (x + 80)) || (ex + 80 > x && ex + 80 < (x + 80))) && ((ey > y) && ey < (y + 80)) || (ey + 80 > y && ey + 80 < (y + 80));
+	}
+
+	public void checkShoot(int x, int y) {
+		for (Dog dog : dogs) {
+			if (dog.getDogType().equals(DogType.PINCHER)) {
+				if (checkCollisionShoot(dog.getX(),dog.getY(), x, y)) {
+					dogs.remove(dog);
+				}
+			}
+		}
+	}
+
+	private void stopGame() {
+		for (Dog dog : dogs) {
+			dog.stop();
+		}
+		stop();
+	}
+
 	public Player getPlayer() {
 		return player;
 	}
@@ -54,21 +135,10 @@ public class Manager extends MyThread{
 	public void setPlayer(Player player) {
 		this.player = player;
 	}
-	
-	public Dog getDog() {
-		return dog;
-	}
 
-	public void setDog(Dog dog) {
-		this.dog = dog;
-	}
-	
-	public boolean check() {
-		return player.check(dog.getX(), dog.getY());
-	}
-
-	@Override
-	void executeTask() {
-		moveDog();
+	public boolean check(int x, int y) {
+		return ((player.getX() > x && player.getX() < (x + 80)) ||
+				(player.getX() + 80 > x && player.getX() + 80 < (x + 80))) && ((player.getY() > y && player.getY() < (y + 80)) || 
+						(player.getY() +80 > y && player.getY() + 80 < (y + 80)));
 	}
 }
