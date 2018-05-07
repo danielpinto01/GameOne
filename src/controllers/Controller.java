@@ -87,6 +87,7 @@ public class Controller implements KeyListener, MouseListener{
 	public void mousePressed(MouseEvent e) {
 		try {
 			manager.checkShoot(e.getX(), e.getY());
+			
 		} catch (Exception e2) {}
 	}
 

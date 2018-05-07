@@ -13,6 +13,7 @@ import javax.swing.JPanel;
 
 import controllers.Controller;
 import models.Dog;
+import models.DogType;
 import models.Player;
 
 public class JPanelInit extends JPanel{
@@ -45,7 +46,12 @@ public class JPanelInit extends JPanel{
 		}
 		if (dogs!= null) {
 			for (Dog dog : dogs) {
-				g.drawImage(DOG, dog.getX(), dog.getY(), 80, 80, this);
+				if (dog.getDogType().equals(DogType.PINCHER)) {
+					g.drawImage(DOG, dog.getX(), dog.getY(), 80, 80, this);
+				}else {
+					g.drawImage(PLAYER, dog.getX(), dog.getY(), 80, 80, this);
+					
+				}
 			}
 		}
 		g.drawString("Life: " + player.getLife(), 400, 30);

@@ -13,23 +13,37 @@ public class Manager extends MyThread{
 	private ArrayList<Dog> dogs;
 	private int time;
 	private Timer timer;
+	private Timer timerTwo;
 
 	public Manager(String name) {
 		super(name);
 		player = new Player();
 		dogs = new ArrayList<>();	
 		addEnemy();
+		addEnemyPitbull();
 		start();
 	}
 
 	private void addEnemy() {
-		timer = new Timer(1000, new ActionListener() {
+		timer = new Timer(3000, new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				dogs.add(new Dog("Pincher", DogType.PINCHER));
 			}
 		});
 		timer.start();	
+	}
+	
+	public void addEnemyPitbull() {
+		timerTwo = new Timer(4000, new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if (dogs.isEmpty()) {
+					dogs.add(new Dog("Pitbull", DogType.PITBULL));
+				}
+			}
+		});
+		timerTwo.start();	
 	}
 	
 	public ArrayList<Dog> getDogs() {
@@ -115,6 +129,8 @@ public class Manager extends MyThread{
 			if (dog.getDogType().equals(DogType.PINCHER)) {
 				if (checkCollisionShoot(dog.getX(),dog.getY(), x, y)) {
 					dogs.remove(dog);
+					timerTwo.stop();
+					System.out.println("eLIMINADO");
 				}
 			}
 		}
