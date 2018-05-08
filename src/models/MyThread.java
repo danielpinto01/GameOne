@@ -21,7 +21,11 @@ public abstract class MyThread implements Runnable{
 		stop = true;
 		notify();
 	}
-
+	
+	public boolean isStop() {
+		return stop;
+	}
+	
 	public synchronized void pause(){
 		pause = true;
 	}
@@ -58,5 +62,8 @@ public abstract class MyThread implements Runnable{
 
 	public Thread getThread() {
 		return thread;
+	}
+
+	public void execute() {
 	}
 }

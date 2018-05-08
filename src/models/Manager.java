@@ -1,5 +1,6 @@
 package models;
 
+import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -46,6 +47,10 @@ public class Manager extends MyThread{
 		timerTwo.start();	
 	}
 	
+	public void setDogs(ArrayList<Dog> dogs) {
+		this.dogs = dogs;
+	}
+
 	public ArrayList<Dog> getDogs() {
 		return dogs;
 	}
@@ -103,6 +108,7 @@ public class Manager extends MyThread{
 			JOptionPane.showMessageDialog(null,"GAME OVER", "Game v1.0", JOptionPane.CLOSED_OPTION);
 			stopGame();
 			timer.stop();
+			timerTwo.stop();
 			player.stop();
 		}
 	}
@@ -158,4 +164,5 @@ public class Manager extends MyThread{
 				(player.getX() + 80 > x && player.getX() + 80 < (x + 80))) && ((player.getY() > y && player.getY() < (y + 80)) || 
 						(player.getY() +80 > y && player.getY() + 80 < (y + 80)));
 	}
+
 }

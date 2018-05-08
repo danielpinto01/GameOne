@@ -18,6 +18,13 @@ public class Player extends MyThread{
 		life = 100;
 		start();
 	}
+	
+	public Player(int posX, int posY, int life) {
+		super("player");
+		this.x = posX;
+		this.y = posY;
+		this.life = life;
+	}
 
 	public void move(DirectionPlayer directionPlayer, int posXFrame, int posYFrame){
 		if (!statusPlayer) {

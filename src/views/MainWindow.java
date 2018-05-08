@@ -48,6 +48,10 @@ public class MainWindow extends JFrame{
 		jPanelInit.setCoordinates(player, dogs);
 		jPanelInit.repaint();
 	}
+	
+	public int[] getSizePanel(){
+		return new int[]{getWidth(), getHeight()};
+	}
 
 	public JPanelInit getjPanelInit() {
 		return jPanelInit;
