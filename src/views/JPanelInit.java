@@ -16,7 +16,6 @@ import controllers.Controller;
 import models.Dog;
 import models.DogType;
 import models.Player;
-import models.Shoot;
 
 public class JPanelInit extends JPanel{
 

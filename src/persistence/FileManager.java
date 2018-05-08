@@ -28,7 +28,7 @@ public class FileManager {
 
 	public void writeFilePlayer(Player player) throws IOException {
 		BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(FILE_PLAYER));
-		bufferedWriter.write(player.getX() + "," + player.getY() + "," + player.getLife());
+		bufferedWriter.write(player.getX() + "," + player.getY() + "," + player.getLife() + "," + player.getTimeGmePlayer());
 		bufferedWriter.newLine();
 		bufferedWriter.close();
 	}
@@ -52,8 +52,7 @@ public class FileManager {
 		String data = "";
 		while ((data = bufferedReader.readLine()) != null) {
 			String[] information = data.split(",");
-			player = new Player(Integer.parseInt(information[0]), Integer.parseInt(information[1]),
-					Integer.parseInt(information[2]));
+			player = new Player(Integer.parseInt(information[0]), Integer.parseInt(information[1]), Integer.parseInt(information[2]),Integer.parseInt(information[3]));
 		}
 		bufferedReader.close();
 		return player;

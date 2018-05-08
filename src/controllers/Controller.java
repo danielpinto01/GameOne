@@ -20,15 +20,17 @@ public class Controller implements KeyListener, MouseListener{
 
 	private MainWindow mainWindow;
 	private Manager manager;
-	private boolean finalGame = true;
 	private Timer timer;
 	private Timer autoSave;
 	private FileManager fileManager;
+	private String entrance;
 
 	public Controller() {
+		entrance =  JOptionPane.showInputDialog("Tiempo de Auto guardado");
 //		mainWindow = new MainWindow(this);
 		manager = new Manager("player");
 		fileManager = new FileManager();
+		
 		init();
 		countTime();
 		autoSave();
@@ -37,6 +39,7 @@ public class Controller implements KeyListener, MouseListener{
 
 	public void init() {
 		int option = JOptionPane.showConfirmDialog(mainWindow, "Nueva partida");
+//		int option = JOptionPane.showConfirmDialog(mainWindow, "Nueva Partida", "Game v1.0", 0);
 		if (option == JOptionPane.NO_OPTION) {
 			try {
 				manager.setPlayer(fileManager.readPlayer());
@@ -67,10 +70,11 @@ public class Controller implements KeyListener, MouseListener{
 	}
 
 	private void autoSave() {
-		autoSave = new Timer(1000, new ActionListener() {
+		autoSave = new Timer(Integer.parseInt(entrance + 000), new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				try {
+					setTimeGame();
 					fileManager.writeFileEnemy(manager.getDogs());
 					fileManager.writeFilePlayer(manager.getPlayer());
 				} catch (IOException e1) {
@@ -79,6 +83,10 @@ public class Controller implements KeyListener, MouseListener{
 			}
 		});
 		autoSave.start();
+	}
+	
+	public void setTimeGame() {
+		manager.setTimeGame();
 	}
 
 	public void countTime() {
@@ -93,7 +101,7 @@ public class Controller implements KeyListener, MouseListener{
 		});
 		timer.start();
 	}
-
+	
 
 	@Override
 	public void keyPressed(KeyEvent e) {
@@ -134,6 +142,5 @@ public class Controller implements KeyListener, MouseListener{
 
 	@Override
 	public void mouseReleased(MouseEvent arg0) {
-		// TODO Auto-generated method stub
 	}
 }

@@ -1,6 +1,5 @@
 package models;
 
-import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -105,12 +104,16 @@ public class Manager extends MyThread{
 
 	public void gameOver() {
 		if (player.getLife() <= 0) {
-			JOptionPane.showMessageDialog(null,"GAME OVER", "Game v1.0", JOptionPane.CLOSED_OPTION);
+			JOptionPane.showMessageDialog(null,"GAME OVER " + "Tiempo de Juego: " + getTime() + " Seg", "Game v1.0", JOptionPane.CLOSED_OPTION);
 			stopGame();
 			timer.stop();
 			timerTwo.stop();
 			player.stop();
 		}
+	}
+	
+	public void setTimeGame() {
+		player.setTimeGmePlayer(getTime());
 	}
 
 	private void checkCollisionDog() {

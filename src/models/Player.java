@@ -10,6 +10,7 @@ public class Player extends MyThread{
 	private int y;
 	private boolean statusPlayer;
 	private int life;
+	private int timeGmePlayer;
 
 	public Player() {
 		super("player");
@@ -19,11 +20,12 @@ public class Player extends MyThread{
 		start();
 	}
 	
-	public Player(int posX, int posY, int life) {
+	public Player(int posX, int posY, int life, int timeGamePlayer) {
 		super("player");
 		this.x = posX;
 		this.y = posY;
 		this.life = life;
+		this.timeGmePlayer = timeGamePlayer;
 	}
 
 	public void move(DirectionPlayer directionPlayer, int posXFrame, int posYFrame){
@@ -53,6 +55,14 @@ public class Player extends MyThread{
 				break;
 			}
 		}
+	}
+
+	public int getTimeGmePlayer() {
+		return timeGmePlayer;
+	}
+
+	public void setTimeGmePlayer(int timeGmePlayer) {
+		this.timeGmePlayer = timeGmePlayer;
 	}
 
 	public int getX() {
